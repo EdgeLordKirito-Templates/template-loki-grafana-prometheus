@@ -25,10 +25,22 @@ services:
       - ./grafana:/etc/grafana/provisioning
     networks:
       - monitoring
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-storage:/prometheus 
+    networks:
+      - monitoring
 
 volumes:
   #grafana-storage:
   loki-storage:
+  prometheus-storage:
 
 networks:
   monitoring:
