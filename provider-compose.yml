@@ -1,0 +1,13 @@
+services:
+  k6-tracing:
+    image: ghcr.io/grafana/xk6-client-tracing:v0.0.9
+    environment:
+      - ENDPOINT=tempo:4317
+    restart: always
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true
+    name: shared-monitoring
